@@ -1,6 +1,7 @@
 import express from 'express';
 
 import {initRestRoutes} from './routes';
+import bodyParser from "body-parser";
 
 export class Server {
     private readonly _app: express.Application = express();

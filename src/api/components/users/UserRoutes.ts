@@ -13,8 +13,8 @@ export class UserRoutes {
     initRoutes(): void {
         this.router.post('/', this.controller.createUser);
         this.router.put('/:id', this.controller.updateUser);
-        this.router.delete('/', this.controller.deleteUser);
-        this.router.patch('/:id/activate', this.controller.activateUser);
+        this.router.delete('/:id', this.controller.deleteUser);
+        this.router.patch('/:id/active', this.controller.activateUser);
         this.router.get('/:id', this.controller.getUser);
     }
 
