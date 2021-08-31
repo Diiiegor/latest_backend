@@ -1,6 +1,8 @@
 import {NextFunction, Request, Response} from "express";
 import {bind} from "decko";
 import {UserRepository} from "./UserRepository";
+import {Utils} from "../../../services/utils";
+
 
 export class UserController {
 
@@ -9,7 +11,7 @@ export class UserController {
     @bind
     async createUser(req: Request, resp: Response, next: NextFunction): Promise<Response | void> {
         const {name, email, password} = req.body;
-        const newUser = await this.userRepository.create({name, email, password})
+        const newUser = await this.userRepository.create({name, email, password: await Utils.hashPassword(password)})
         return resp.json(newUser);
     }
 
@@ -17,7 +19,11 @@ export class UserController {
     async updateUser(req: Request, resp: Response, next: NextFunction): Promise<Response | void> {
         const {name, email, password} = req.body
         const id = req.params.id
-        const newUser = await this.userRepository.updateById({name, email, password}, id)
+        const newUser = await this.userRepository.updateById({
+            name,
+            email,
+            password: await Utils.hashPassword(password)
+        }, id)
         return resp.json(newUser)
     }
 
