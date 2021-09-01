@@ -6,4 +6,9 @@ export class Utils {
         const hash = await bcrypt.hash(password, salt);
         return hash
     }
+
+    public static async checkPassword(password, hash) {
+        const compare = await bcrypt.compare(password, hash)
+        return compare;
+    }
 }

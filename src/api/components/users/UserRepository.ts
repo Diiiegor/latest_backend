@@ -30,4 +30,9 @@ export class UserRepository {
         return user;
     }
 
+    async getByEmail(email: string) {
+        const user = await User.findOne({email: email})
+        return user;
+    }
+
 }
