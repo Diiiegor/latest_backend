@@ -17,6 +17,7 @@
     "decko": "^1.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-validator": "^6.12.1",
     "mongoose": "^6.0.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"

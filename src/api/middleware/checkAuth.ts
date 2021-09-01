@@ -6,7 +6,7 @@ import passport from "passport";
 import '../../services/passport';
 import {UnAuthorizedToken} from "../components/authorization/UnAuthorizedTokenModel";
 
-
+//Valida el jwt de la peticion
 export function checkAuth(req: Request, resp: Response, next: NextFunction) {
     passport.authenticate("jwt", async function (err, user, jwtToken) {
         const unAuthorizedToken = await UnAuthorizedToken.findOne({token: req.header('Authorization')})

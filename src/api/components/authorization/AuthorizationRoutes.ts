@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {AuthorizationController} from "./AuthorizationController";
 import {checkAuth} from "../../middleware/checkAuth";
+import {body} from "express-validator";
 
 export class AuthorizationRoutes {
 
@@ -12,7 +13,8 @@ export class AuthorizationRoutes {
     }
 
     private initRoutes(): void {
-        this.router.post('/', this.controller.login)
-        this.router.delete('/',checkAuth, this.controller.logOuth)
+        this.router.post('/', body('email').isEmail(),
+            body('password').isLength({min: 9}), this.controller.login)
+        this.router.delete('/', checkAuth, this.controller.logOuth)
     }
 }

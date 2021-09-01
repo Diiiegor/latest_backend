@@ -8,14 +8,15 @@ export class UserRepository {
     }
 
     async updateById(user: IUser, id) {
-        const newUser = await User.findByIdAndUpdate(id, user)
+        await User.findByIdAndUpdate(id, user)
+        const newUser = await User.findById(id);
         return newUser
     }
 
     async getById(id) {
         const user = await User.findOne({
-            _id: id,
-            active: true
+            active: true,
+            _id: id
         });
         return user;
     }

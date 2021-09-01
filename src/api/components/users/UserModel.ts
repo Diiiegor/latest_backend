@@ -7,21 +7,34 @@ interface IUser {
 }
 
 const userSchema = new mongoose.Schema({
+    active: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
     name: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate: {
+            validator: async function (email) {
+                const user = await this.constructor.findOne({email});
+                if (user) {
+                    if (this.id === user.id) {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        },
     },
     password: {
         type: String,
         required: true
-    },
-    active: {
-        type: Boolean,
-        default: true
     }
 });
 

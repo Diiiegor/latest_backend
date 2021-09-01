@@ -3,6 +3,8 @@ import passportJwt from "passport-jwt";
 import {User} from "../api/components/users/UserModel";
 
 
+//Adicionamos metodo de autenticacion JWT a passport
+
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
 passport.use(new JwtStrategy({
